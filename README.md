@@ -1,19 +1,17 @@
-# study_buddy
+# StudyBuddy
 
-A new Flutter project.
+An all-in-one study tool made increase productivity by decreasing the different platforms needed to study.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+ - In-app Markup notetaking
+ - PDF -> Flashcard conversion
+ - Manual flashcard creation
+ - Quizzes generated from flashcards
+ - Manual quiz creation
 
-A few resources to get you started if this is your first Flutter project:
+### Team Members
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+ - Jack Dixon ([J4K20](https://github.com/J4K20))
+ - Jacob Robbins ([Jacob-Robbins3](https://github.com/Jacob-Robbins3))
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# ASE-456-StudyBuddy
-# ASE-456-StudyBuddy

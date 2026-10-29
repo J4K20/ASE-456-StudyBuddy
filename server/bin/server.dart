@@ -15,7 +15,8 @@ final _router = Router()
   ..post('/register', _register)
   ..post('/login', _login)
   ..get('/sets/<userId>', _getSets)
-  ..post('/sets', _createSet);
+  ..post('/sets', _createSet)
+  ..get('/set/<setId>', _getSet);
 
 Response _json(int status, Map<String, dynamic> body) => Response(
   status,
@@ -59,7 +60,13 @@ Future<Response> _login(Request req) async {
 Future<Response> _getSets(Request req, String userId) async {
   final list = await sets.find(where.eq('userId', userId)).toList();
   final result = list
-      .map((s) => {'id': (s['_id'] as ObjectId).oid, 'title': s['title']})
+      .map(
+        (s) => {
+          'id': (s['_id'] as ObjectId).oid,
+          'title': s['title'],
+          'public': s['public'],
+        },
+      )
       .toList();
   return Response.ok(
     jsonEncode(result),
@@ -72,9 +79,21 @@ Future<Response> _createSet(Request req) async {
   final result = await sets.insertOne({
     'userId': body['userId'],
     'title': body['title'],
-    'cards': [],
+    'cards': body['cards'] ?? [],
+    'public': body['public'] ?? false,
   });
   return _json(201, {'id': (result.id as ObjectId).oid});
+}
+
+Future<Response> _getSet(Request req, String setId) async {
+  final s = await sets.findOne(where.id(ObjectId.fromHexString(setId)));
+  if (s == null) return _json(404, {'error': 'Set not found'});
+  return _json(200, {
+    'id': setId,
+    'title': s['title'],
+    'public': s['public'],
+    'cards': s['cards'] ?? [],
+  });
 }
 
 void main() async {

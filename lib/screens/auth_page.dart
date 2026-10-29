@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:study_buddy/screens/home_screen.dart';
 
-import 'auth_service.dart';
+import '../auth_service.dart';
 import 'profile.dart';
 
 class AuthPage extends StatefulWidget {
@@ -45,7 +46,7 @@ class _AuthPageState extends State<AuthPage> {
     if (error == null) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const ProfilePage()),
+        MaterialPageRoute(builder: (context) => const HomeScreen()),
       );
     }
   }

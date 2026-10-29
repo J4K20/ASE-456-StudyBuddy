@@ -12,11 +12,25 @@ class SetService {
     return jsonDecode(res.body);
   }
 
-  static Future<void> createSet(String title) async {
+  static Future<void> createSet(
+    String title,
+    bool public, [
+    List<Map<String, String>> cards = const [],
+  ]) async {
     await http.post(
       Uri.parse('${AuthService.baseUrl}/sets'),
       headers: {'content-type': 'application/json'},
-      body: jsonEncode({'userId': AuthService.currentUserId, 'title': title}),
+      body: jsonEncode({
+        'userId': AuthService.currentUserId,
+        'title': title,
+        'public': public,
+        'cards': cards,
+      }),
     );
+  }
+
+  static Future<Map<String, dynamic>> getSet(String id) async {
+    final res = await http.get(Uri.parse('${AuthService.baseUrl}/set/$id'));
+    return jsonDecode(res.body);
   }
 }

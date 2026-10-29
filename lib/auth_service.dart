@@ -27,4 +27,9 @@ class AuthService {
       return 'Could not reach server';
     }
   }
+
+  static void logout() {
+    currentUserId = null;
+    currentUsername = null;
+  }
 }
